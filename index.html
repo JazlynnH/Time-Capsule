@@ -1,0 +1,113 @@
+<!--Jazlynn Henry-->
+<!-- Add the doctype tag to tell the browser what type of document this is-->
+<!DOCTYPE html>
+<!-- Add the html to start your html document and set the lang to english-->
+<html lang="en">
+    <!-- Add the head tag to contain the metadata for the document-->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Add the title tag to give the document a title-->
+        <title>Time Capsule Project</title>
+
+        <!-- Use CSS to style this page with kirby themed elements -->
+        <style>
+            body{
+                font-family: 'comic', comic, fancy;
+                background-color: powderblue;
+                background-image: url(https://images.hdqwalls.com/download/nebula-stars-4k-ov-1600x900.jpg);
+                color: whitesmoke ;
+            }
+            .container{
+                max-width: 600px;
+                margin: 50px auto;
+                padding: 20px;
+                background-color: rgba(158, 158, 243, 0.436) ;
+                box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.1);
+            }
+            h1{
+                text-align: center;
+            }
+        </style>
+    </head>
+    <!-- Add the body tag to contain the visible page content-->
+    <body>
+        <!--This will be our main container for our content-->
+        <div class="container">
+            <!-- Lets put a header for our title for our operation kirby app-->
+            <h1>Time Capsule Project</h1>
+            <!--Add instructions for our user-->
+            <p>Welcome to the Time Capsule Project! Fill out the application below and take part in your very own Time Capsule.
+            </p>
+            <!--Add a single form for all our inputs needed-->
+            <form id="agentForm">
+                <!--add a label to label the first name textbox -->
+                <label for="firstName">First Name: </label>
+                 <!--add the first name textbox -->
+                 <input type="text" id="firstName" placeholder="Enter your First Name" required><br><br>
+                 <!--Add a label to label for the difficulty level textbox-->
+                 <label for="lastName"> Last Name: </label>
+                <!--add the last name textbox -->
+                 <input type="text" id="lastName" placeholder="Enter your Last Name" required><br><br>
+                 <!--Add the zipcode label-->
+                 <label for="zipcode"> Zip Code: </label>
+                <!--add the zipcode textbox -->
+                 <input type="text" id="zipcode" placeholder="Enter 5-digit Zip Code" required><br><br>
+                 <!--Add the submission button so -->
+                 <input type="submit" value="Get Mission">
+            </form>
+            <!--Add a div to hold a hidden warning message-->
+            <div class="warning" id="warningMessage"></div>
+
+            <!--Add a div to hold the details which are diffent by default-->
+            <div id="Mission" style="display: none;">
+                Great! Now that you finished the first step, Please insert any text and image you would like to add to your Time Capsule.
+                Once done your Time Capsule is ready to go and will be sent to the email you submitted in a few years.
+                A fun suprise to open and see what past you has sent!
+                <form>
+                     <!--Add a label to the email section-->
+                     <label for="Email"> Email: </label>
+                    <!--Add the email textbox-->
+                     <input type="text" id="Email" placeholder="Enter your Email" required><br><br>
+                     <!--Add a label for the text box the users will be writing in-->
+                     <label for="TextBox"> Time Capsule: </label>
+                     <!--Add the text box-->
+                     <input type="text" id="TextBox" placeholder="Enter anything you feel like telling your future self" required><br><br>
+                     <!--Adding the button so people can submit their Timecapsules-->
+                     <input type="submit" value:="send agentForm to user email">
+                </form>
+            </div>
+            <!--Add our javaScript for validation-->
+            <script>
+                //add an event listener to the form for validation when the user presses submit the form
+                document.getElementById("agentForm").addEventListener("submit", function(event){
+                    // Prevent the default form submt action
+                    event.preventDefault();
+                    //Get the data values from the form the user typed in.
+                    const firstName = document.getElementById("firstName").value;
+                    const lastName = document.getElementById("lastName").value;
+                    const zipcode = document.getElementById("zipcode").value;
+                    
+
+                    // combine the first and last name
+                    const fullName = firstName + "" + lastName;
+
+                    //validate the length of the entire name so that it is at not over 20 characters long
+                    if(fullName.length > 20){
+                        //If it is over 20 characters long, show the warning message
+                        document.getElementById("warningmessage").innerHTML= "full Name is too long for our records";
+                    }
+
+                    // Check if the zipcode is 5 characters long
+                        if(zipcode.length != 5){
+                             // If it is not 5 characters long, show the warning message
+                            document.getElementById("warningMessage").innerHTML= "Invalid zipcode";
+                            return;
+                        }
+                        //If the zipcode is 5 characters long, show the Capsule area where you fill out the detail you would like to add to your time capsule.
+                        document.getElementById("Mission").style.display = "block";
+                });
+            </script>
+        </div>
+    </body>
+</html>
